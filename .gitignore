@@ -1,0 +1,5 @@
+# Python compiled byte code
+*.pyc
+
+# PyCharm directory
+.idea
