@@ -1,5 +1,8 @@
 # Python compiled byte code
 *.pyc
 
+# SQLite3 database
+db.sqlite3
+
 # PyCharm directory
 .idea
