@@ -1,0 +1,398 @@
+[
+{
+  "model": "polls.question",
+  "pk": 1,
+  "fields": {
+    "text": "\u00bfTe gusta la programaci\u00f3n?",
+    "published": "2016-07-01T00:00:00Z",
+    "closed": null
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 2,
+  "fields": {
+    "text": "\u00bfQu\u00e9 dificultad est\u00e1 teniendo el curso?",
+    "published": "2016-07-01T00:00:00Z",
+    "closed": null
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 3,
+  "fields": {
+    "text": "\u00bfPiensas que el testing es \u00fatil?",
+    "published": "2016-07-01T00:00:00Z",
+    "closed": null
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 4,
+  "fields": {
+    "text": "\u00bfCu\u00e1l es tu lenguaje de programaci\u00f3n favorito?",
+    "published": "2016-07-01T00:00:00Z",
+    "closed": null
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 5,
+  "fields": {
+    "text": "\u00bfQu\u00e9 paradigma de programaci\u00f3n te gusta m\u00e1s?",
+    "published": "2016-07-01T00:00:00Z",
+    "closed": null
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 6,
+  "fields": {
+    "text": "\u00bfQu\u00e9 sistema operativo prefieres para trabajar?",
+    "published": "2016-07-01T00:00:00Z",
+    "closed": null
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 7,
+  "fields": {
+    "text": "\u00bfQui\u00e9n es el hombre m\u00e1s fuerte del mundo?",
+    "published": "2016-07-01T00:00:00Z",
+    "closed": null
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 8,
+  "fields": {
+    "text": "Qu\u00e9 fue antes, \u00bfel huevo o la gallina?",
+    "published": "2016-07-01T00:00:00Z",
+    "closed": null
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 9,
+  "fields": {
+    "text": "\u00bfCu\u00e1l es tu estaci\u00f3n del a\u00f1o preferida?",
+    "published": "2016-07-01T00:00:00Z",
+    "closed": null
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 10,
+  "fields": {
+    "text": "\u00bfDulce o salado?",
+    "published": "2016-07-01T00:00:00Z",
+    "closed": null
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 11,
+  "fields": {
+    "text": "\u00bfChocolate blanco o chocolate negro?",
+    "published": "2016-07-01T00:00:00Z",
+    "closed": null
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 12,
+  "fields": {
+    "text": "\u00bfTe gustan m\u00e1s los perros o los gatos?",
+    "published": "2016-07-01T00:00:00Z",
+    "closed": null
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 1,
+  "fields": {
+    "question": 1,
+    "text": "S\u00ed",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 2,
+  "fields": {
+    "question": 1,
+    "text": "No",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 3,
+  "fields": {
+    "question": 2,
+    "text": "Baja",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 4,
+  "fields": {
+    "question": 2,
+    "text": "Media",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 5,
+  "fields": {
+    "question": 2,
+    "text": "Alta",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 6,
+  "fields": {
+    "question": 3,
+    "text": "S\u00ed",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 7,
+  "fields": {
+    "question": 3,
+    "text": "No",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 8,
+  "fields": {
+    "question": 4,
+    "text": "Python",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 9,
+  "fields": {
+    "question": 4,
+    "text": "Javascript",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 10,
+  "fields": {
+    "question": 4,
+    "text": "PHP",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 11,
+  "fields": {
+    "question": 5,
+    "text": "Programaci\u00f3n imperativa",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 12,
+  "fields": {
+    "question": 5,
+    "text": "Programaci\u00f3n declarativa",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 13,
+  "fields": {
+    "question": 6,
+    "text": "Linux",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 14,
+  "fields": {
+    "question": 6,
+    "text": "Mac",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 15,
+  "fields": {
+    "question": 6,
+    "text": "Windows",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 16,
+  "fields": {
+    "question": 7,
+    "text": "Chuck Norris",
+    "votes": 1000
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 17,
+  "fields": {
+    "question": 7,
+    "text": "Arnold Schwarzenegger",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 18,
+  "fields": {
+    "question": 7,
+    "text": "Sylvester Stallone",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 19,
+  "fields": {
+    "question": 7,
+    "text": "Jean-Claude Van Damme",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 20,
+  "fields": {
+    "question": 7,
+    "text": "Steven Seagal",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 21,
+  "fields": {
+    "question": 8,
+    "text": "El huevo",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 22,
+  "fields": {
+    "question": 8,
+    "text": "La gallina",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 23,
+  "fields": {
+    "question": 9,
+    "text": "Primavera",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 24,
+  "fields": {
+    "question": 9,
+    "text": "Verano",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 25,
+  "fields": {
+    "question": 9,
+    "text": "Oto\u00f1o",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 26,
+  "fields": {
+    "question": 9,
+    "text": "Invierno",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 27,
+  "fields": {
+    "question": 10,
+    "text": "Dulce",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 28,
+  "fields": {
+    "question": 10,
+    "text": "Salado",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 29,
+  "fields": {
+    "question": 11,
+    "text": "Chocolate negro",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 30,
+  "fields": {
+    "question": 11,
+    "text": "Chocolate blanco",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 31,
+  "fields": {
+    "question": 12,
+    "text": "Los adorables perros",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 32,
+  "fields": {
+    "question": 12,
+    "text": "Esos odiosos gatos",
+    "votes": 0
+  }
+}
+]
