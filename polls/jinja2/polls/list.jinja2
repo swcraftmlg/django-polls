@@ -1,0 +1,45 @@
+{% extends 'polls/base.jinja2' %}
+
+{% block jumbotron %}
+    <div class="jumbotron">
+        <div class="container">
+            <h1><img src="{{ static('polls/images/poll-pen.svg') }}" style="width: 63px;"> Django Polls</h1>
+            <p><sub>Polls for everyone!</sub></p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {% for question in latest_question_list %}
+        <div class="row">
+            <div class="col-md-12">
+                <h2><a href="{{ url('polls:detail', args=[question.id]) }}">{{ question.text }}</a></h2>
+                {% set question_votes = question.votes %}
+                <p class="text-uppercase"><sub>Published {{ question.published.strftime('%Y-%m-%d %H:%M:%S') }}{% if question.closed is not none %} | {% if question.active %}Closes {{ question.closed.strftime('%Y-%m-%d %H:%M:%S') }}{% else %}<span class="text-danger">Closed {{ question.closed.strftime('%Y-%m-%d %H:%M:%S') }}</span>{% endif %}{% endif %} | {{ question_votes }} vote{{ question_votes|pluralize }}</sub></p>
+            </div>
+        </div>
+    {% endfor %}
+
+    {% if page_obj.paginator.num_pages > 1 %}
+        <nav class="text-center">
+            <ul class="pagination">
+                <li{% if page_obj.number == 1 %} class="disabled"{% endif %}>
+                    <a href="{{ url('polls:list') }}?{{ page_kwarg }}=1" aria-label="Previous">
+                        <span aria-hidden="true">«</span>
+                    </a>
+                </li>
+                {% set pages_jump = 2 %}
+                {% set page_min = [1, page_obj.number - pages_jump] | max %}
+                {% set page_max = [page_obj.paginator.num_pages, page_obj.number + pages_jump] | min %}
+                {% for page_number in range(page_min, page_max + 1) %}
+                    <li{% if page_number == page_obj.number %} class="active"{% endif %}><a href="{{ url('polls:list') }}?{{ page_kwarg }}={{ page_number }}">{{ page_number }}</a></li>
+                {% endfor %}
+                <li{% if page_obj.number == page_obj.paginator.num_pages %} class="disabled"{% endif %}>
+                    <a href="{{ url('polls:list') }}?{{ page_kwarg }}={{ page_obj.paginator.num_pages }}" aria-label="Next">
+                        <span aria-hidden="true">»</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    {% endif %}
+{% endblock %}

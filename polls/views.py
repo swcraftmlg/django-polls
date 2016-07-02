@@ -10,7 +10,7 @@ from .models import Question, Choice
 
 
 class ListView(generic.ListView):
-    template_name = 'polls/list.html'
+    template_name = 'polls/list.jinja2'
     context_object_name = 'latest_question_list'
     paginate_by = constants.PAGE_SIZE
 
@@ -43,15 +43,15 @@ class DetailView(generic.DetailView):
 
     def get_template_names(self):
         question = self.get_object()
-        template_name = 'polls/detail.html'
+        template_name = 'polls/detail.jinja2'
         if question.closed is not None and question.closed < timezone.now():
-            template_name = 'polls/results.html'
+            template_name = 'polls/results.jinja2'
         return template_name
 
 
 class ResultsView(generic.DetailView):
     model = Question
-    template_name = 'polls/results.html'
+    template_name = 'polls/results.jinja2'
 
     def get_queryset(self):
         """
@@ -67,7 +67,7 @@ def vote(request, question_id):
         selected_choice.increment_votes()
     except (KeyError, Choice.DoesNotExist):
         # Redisplay the question voting form.
-        return render(request, 'polls/detail.html', {
+        return render(request, 'polls/detail.jinja2', {
             'question': question,
             'error_message': "You didn't select a choice.",
         })

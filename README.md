@@ -8,6 +8,14 @@ Este proyecto implementa un sistema de encuestas utilizando [Django](https://www
 Las versiones del proyecto han sido pensadas para ser seguidas en orden. Cada nueva versión incorpora una funcionalidad adicional concreta. El número en las versiones sigue la especificación de [Semantic Versioning](http://semver.org/).
 
 
+### 1.1.0
+
+Cambios relativos a la interfaz de usuario de la aplicación:
+
+ - Agregado motor de plantillas [Jinja2](http://jinja.pocoo.org/) e integrado con [Django](https://www.djangoproject.com/).
+ - Mejoradas las plantillas HTML utilizando [Bootstrap](http://getbootstrap.com/).
+
+
 ### 1.0.0
 
 Mejoras notables respecto al código del tutorial:

@@ -1,0 +1,26 @@
+{% extends 'polls/base.jinja2' %}
+
+{% block jumbotron %}
+    <div class="jumbotron">
+        <div class="container">
+            <h1>{{ question.text }}</h1>
+            {% set question_votes = question.votes %}
+            <p class="text-uppercase"><sub>Published {{ question.published.strftime('%Y-%m-%d %H:%M:%S') }}{% if question.closed is not none %} | {% if question.active %}Closes {{ question.closed.strftime('%Y-%m-%d %H:%M:%S') }}{% else %}Closed {{ question.closed.strftime('%Y-%m-%d %H:%M:%S') }}{% endif %}{% endif %} | {{ question_votes }} vote{{ question_votes|pluralize }}</sub></p>
+            <p><a href="{{ url('polls:list') }}" style="color: white;">↩ back</a></p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {% if error_message is defined %}<div class="alert alert-danger" role="alert">{{ error_message }}</div>{% endif %}
+    <form action="{{ url('polls:vote', args=[question.id]) }}" method="post">
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        {% for choice in question.choices.all() %}
+            <div class="radio">
+                <input type="radio" name="choice" id="choice{{ loop.index }}" value="{{ choice.id }}">
+                <label for="choice{{ loop.index }}"><h2>{{ choice.text }}</h2></label>
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 2em;">Vote</button>
+    </form>
+{% endblock %}

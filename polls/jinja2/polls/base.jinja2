@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Polls web application">
+    <meta name="keywords" content="polls,app,python,django,html,css,bootstrap">
+    <meta name="author" content="Javier Matos Odut">
+    <title>{% block title %}Polls{% endblock %}</title>
+    <link rel="icon" href="{{ static('polls/images/poll.png') }}" />
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ static('polls/css/style.css') }}" />
+</head>
+<body>
+{% block jumbotron %}
+{% endblock %}
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>
