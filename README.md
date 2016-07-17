@@ -8,6 +8,13 @@ Este proyecto implementa un sistema de encuestas utilizando [Django](https://www
 Las versiones del proyecto han sido pensadas para ser seguidas en orden. Cada nueva versión incorpora una funcionalidad adicional concreta. El número en las versiones sigue la especificación de [Semantic Versioning](http://semver.org/).
 
 
+### 1.2.0
+
+ - Incorporación de cuotas para evitar abusos en la votación.
+ - La hoja de estilo CSS pasa a utilizar rutas relativas para la carga de imágenes.
+ - Mejoradas las plantillas HTML.
+
+
 ### 1.1.0
 
 Cambios relativos a la interfaz de usuario de la aplicación:

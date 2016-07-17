@@ -27,10 +27,10 @@ class Question(models.Model):
 
     def validate_closed(self, now=None):
         closed = now if now is not None else self.closed
-        if closed is not None and (closed - self.published) < timedelta(hours=constants.MIN_ACTIVE_HOURS):
+        if closed is not None and (closed - self.published) < timedelta(hours=constants.QUESTION_MIN_ACTIVE_HOURS):
             raise exceptions.QuestionError(
                 'The question can not be closed in less than {0} hours from publication.'.format(
-                    constants.MIN_ACTIVE_HOURS,
+                    constants.QUESTION_MIN_ACTIVE_HOURS,
                 ))
 
     def close(self):

@@ -11,13 +11,9 @@
 
 {% block content %}
     {% for question in latest_question_list %}
-        <div class="row">
-            <div class="col-md-12">
-                <h2><a href="{{ url('polls:detail', args=[question.id]) }}">{{ question.text }}</a></h2>
-                {% set question_votes = question.votes %}
-                <p class="text-uppercase"><sub>Published {{ question.published.strftime('%Y-%m-%d %H:%M:%S') }}{% if question.closed is not none %} | {% if question.active %}Closes {{ question.closed.strftime('%Y-%m-%d %H:%M:%S') }}{% else %}<span class="text-danger">Closed {{ question.closed.strftime('%Y-%m-%d %H:%M:%S') }}</span>{% endif %}{% endif %} | {{ question_votes }} vote{{ question_votes|pluralize }}</sub></p>
-            </div>
-        </div>
+        <h2><a href="{{ url('polls:detail', args=[question.id]) }}">{{ question.text }}</a></h2>
+        {% set question_votes = question.votes %}
+        <p class="text-uppercase"><sub>Published {{ question.published.strftime('%Y-%m-%d %H:%M:%S') }}{% if question.closed is not none %} | {% if question.active %}Closes {{ question.closed.strftime('%Y-%m-%d %H:%M:%S') }}{% else %}<span class="text-danger">Closed {{ question.closed.strftime('%Y-%m-%d %H:%M:%S') }}</span>{% endif %}{% endif %} | {{ question_votes }} vote{{ question_votes|pluralize }}</sub></p>
     {% endfor %}
 
     {% if page_obj.paginator.num_pages > 1 %}

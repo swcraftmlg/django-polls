@@ -46,11 +46,11 @@ class QuestionTests(TestCase):
         self.assertTrue(question.active)
 
     def test_active_past_closed_question(self):
-        published = timezone.now() - timedelta(hours=constants.MIN_ACTIVE_HOURS + 1)
+        published = timezone.now() - timedelta(hours=constants.QUESTION_MIN_ACTIVE_HOURS + 1)
         question = Question(
             text='question 1',
             published=published,
-            closed=published + timedelta(hours=constants.MIN_ACTIVE_HOURS),
+            closed=published + timedelta(hours=constants.QUESTION_MIN_ACTIVE_HOURS),
         )
         self.assertFalse(question.active)
 
@@ -59,7 +59,7 @@ class QuestionTests(TestCase):
         question = Question(
             text='question 1',
             published=published,
-            closed=published + timedelta(hours=constants.MIN_ACTIVE_HOURS),
+            closed=published + timedelta(hours=constants.QUESTION_MIN_ACTIVE_HOURS),
         )
         self.assertTrue(question.active)
 
@@ -77,7 +77,7 @@ class QuestionTests(TestCase):
         now = timezone.now()
         question = Question(
             text='question 1',
-            published=now - timedelta(hours=constants.MIN_ACTIVE_HOURS),
+            published=now - timedelta(hours=constants.QUESTION_MIN_ACTIVE_HOURS),
         )
         question.close()
         self.assertAlmostEqual(datetime_to_float(question.closed), datetime_to_float(now), 0)
@@ -94,7 +94,7 @@ class ChoiceTests(TestCase):
 
     def test_increment_votes_past_closed_question(self):
         now = timezone.now()
-        published = now - timedelta(days=constants.MIN_ACTIVE_HOURS)
+        published = now - timedelta(days=constants.QUESTION_MIN_ACTIVE_HOURS)
         question = Question(text='question 1', published=published, closed=now)
         choice = Choice(question=question, text='choice 1')
         with self.assertRaises(exceptions.ChoiceVotingError):
@@ -190,7 +190,7 @@ class QuestionDetailViewTests(TestCase):
         404 not found.
         """
         question = Question.objects.create(text='Future question.', published=timezone.now() + timedelta(days=1))
-        url = reverse('polls:detail', args=(question.pk,))
+        url = reverse('polls:detail', args=[question.pk])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
 
@@ -200,6 +200,6 @@ class QuestionDetailViewTests(TestCase):
         the question's text.
         """
         question = Question.objects.create(text='Future question.', published=timezone.now() - timedelta(days=1))
-        url = reverse('polls:detail', args=(question.pk,))
+        url = reverse('polls:detail', args=[question.pk])
         response = self.client.get(url)
         self.assertContains(response, question.text)
