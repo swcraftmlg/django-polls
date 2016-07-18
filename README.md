@@ -8,6 +8,16 @@ Este proyecto implementa un sistema de encuestas utilizando [Django](https://www
 Las versiones del proyecto han sido pensadas para ser seguidas en orden. Cada nueva versión incorpora una funcionalidad adicional concreta. El número en las versiones sigue la especificación de [Semantic Versioning](http://semver.org/).
 
 
+### 1.3.0
+
+ - Implementación de una API como subaplicación de polls utilizando [Django REST framework](http://www.django-rest-framework.org/).
+ - Nuevos requisitos del proyecto incluidos en el archivo requirements.txt.
+ - Tamaño de página para paginación movido hacia el archivo de settings del proyecto.
+ - Declarados los atributos id de Question y Choice de forma explícita en el archivo models.py.
+ - Corregida la ordenación de preguntas cerradas y sin cerrar.
+ - Corregido el método close del modelo Question para salvar los cambios.
+
+
 ### 1.2.0
 
  - Incorporación de cuotas para evitar abusos en la votación.

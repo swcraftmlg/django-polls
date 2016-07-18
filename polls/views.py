@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 
 from django.core.urlresolvers import reverse
+from django.db.models.functions import Coalesce
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
@@ -8,7 +9,7 @@ from django.views import generic
 
 from . import constants
 from . import exceptions
-from .models import Question, Choice
+from . import models
 
 
 class ListView(generic.ListView):
@@ -20,9 +21,14 @@ class ListView(generic.ListView):
         """
         Return the latest questions.
         """
-        queryset = Question.objects.filter(published__lte=timezone.now())  # Show published
-        queryset = queryset.filter(choice__isnull=False).distinct()  # Remove questions without choices
-        queryset = queryset.order_by('-published', '-closed', '-id')  # Order by published and closed datetime, and id
+        # Show published
+        queryset = models.Question.objects.filter(published__lte=timezone.now())
+        # Remove questions without choices
+        queryset = queryset.filter(choice__isnull=False).distinct()
+        # Annotate query to order active questions before closed questions
+        queryset = queryset.annotate(now_or_closed=Coalesce('closed', timezone.now()))
+        # Order by published datetime, closed datetime, and id
+        queryset = queryset.order_by('-published', '-now_or_closed', '-id')
         return queryset
 
     def get_context_data(self, **kwargs):
@@ -35,13 +41,13 @@ class ListView(generic.ListView):
 
 
 class DetailView(generic.DetailView):
-    model = Question
+    model = models.Question
 
     def get_queryset(self):
         """
         Excludes any questions that aren't published yet.
         """
-        return Question.objects.filter(published__lte=timezone.now())
+        return models.Question.objects.filter(published__lte=timezone.now())
 
     def get_template_names(self):
         question = self.get_object()
@@ -52,18 +58,18 @@ class DetailView(generic.DetailView):
 
 
 class ResultsView(generic.DetailView):
-    model = Question
+    model = models.Question
     template_name = 'polls/results.jinja2'
 
     def get_queryset(self):
         """
         Excludes any questions that aren't published yet.
         """
-        return Question.objects.filter(published__lte=timezone.now())
+        return models.Question.objects.filter(published__lte=timezone.now())
 
 
 def vote(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
+    question = get_object_or_404(models.Question, pk=question_id)
 
     ###########################################################################
     # Check the user did not vote for this question recently
@@ -98,7 +104,7 @@ def vote(request, question_id):
     try:
         selected_choice = question.choices.get(pk=request.POST['choice'])
         selected_choice.increment_votes()
-    except (KeyError, Choice.DoesNotExist):
+    except (KeyError, models.Choice.DoesNotExist):
         return render(request, 'polls/detail.jinja2', {
             'question': question,
             'error_message': 'You have to select a choice.',

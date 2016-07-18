@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import include, url
 
 from . import views
 
@@ -6,6 +6,8 @@ from . import views
 app_name = 'polls'
 
 urlpatterns = [
+    url(r'^api/', include('polls.api.urls')),
+
     # ex: /polls/
     url(r'^$', views.ListView.as_view(), name='list'),
     # ex: /polls/5/

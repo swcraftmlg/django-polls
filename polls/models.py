@@ -10,6 +10,7 @@ from . import exceptions
 
 
 class Question(models.Model):
+    id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     text = models.CharField(max_length=200)
     published = models.DateTimeField(default=timezone.now)
     closed = models.DateTimeField(blank=True, null=True)
@@ -25,20 +26,19 @@ class Question(models.Model):
         else:
             return self.published <= timezone.now()
 
-    def validate_closed(self, now=None):
-        closed = now if now is not None else self.closed
-        if closed is not None and (closed - self.published) < timedelta(hours=constants.QUESTION_MIN_ACTIVE_HOURS):
+    def validate_closed(self):
+        if self.closed is not None and (self.closed - self.published) < timedelta(hours=constants.QUESTION_MIN_ACTIVE_HOURS):
             raise exceptions.QuestionError(
                 'The question can not be closed in less than {0} hours from publication.'.format(
                     constants.QUESTION_MIN_ACTIVE_HOURS,
-                ))
+                ),
+            )
 
     def close(self):
         if self.closed is not None:
-            raise exceptions.QuestionError('Question already closed.')
-        now = timezone.now()
-        self.validate_closed(now)
-        self.closed = now
+            raise exceptions.QuestionError('This question is already closed.')
+        self.closed = timezone.now()
+        self.save()
 
     def save(self, *args, **kwargs):
         self.validate_closed()
@@ -49,6 +49,7 @@ class Question(models.Model):
 
 
 class Choice(models.Model):
+    id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     question = models.ForeignKey(
         Question,
         on_delete=models.CASCADE,
@@ -60,7 +61,7 @@ class Choice(models.Model):
 
     def increment_votes(self, n=1):
         if not self.question.active:
-            raise exceptions.ChoiceVotingError('Can not vote for a non active question.')
+            raise exceptions.ChoiceVotingError('Cannot vote for a closed question.')
         self.votes = models.F('votes') + n
         self.save()
 
