@@ -9,6 +9,7 @@ class ChoiceInline(admin.TabularInline):
     extra = 3
 
 
+@admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
     list_display = ['text', 'published', 'closed', 'votes']
     list_filter = ['published']
@@ -30,5 +31,3 @@ class QuestionAdmin(admin.ModelAdmin):
         queryset.filter(published__lte=now, closed__isnull=True).update(closed=now)
 
     make_close.short_description = 'Close selected questions'
-
-admin.site.register(Question, QuestionAdmin)

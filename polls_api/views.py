@@ -1,11 +1,11 @@
 from rest_framework import viewsets
-from rest_framework.decorators import detail_route
+from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 
+from polls import exceptions
+from polls import models
 from . import serializers
-from .. import exceptions
-from .. import models
 
 
 class QuestionViewSet(viewsets.ModelViewSet):
@@ -14,7 +14,7 @@ class QuestionViewSet(viewsets.ModelViewSet):
     search_fields = ['text', 'choice__text']
     ordering_fields = ['id', 'published', 'closed', 'votes']
 
-    @detail_route(methods=['post'])
+    @action(methods=['post'], detail=True)
     def vote(self, request, pk=None):
         question = self.get_object()
         serializer_vote = serializers.VoteSerializer(
@@ -36,7 +36,7 @@ class QuestionViewSet(viewsets.ModelViewSet):
         except exceptions.ChoiceVotingError as e:
             raise ValidationError(str(e))
 
-    @detail_route(methods=['post'])
+    @action(methods=['post'], detail=True)
     def close(self, request, pk=None):
         question = self.get_object()
         try:

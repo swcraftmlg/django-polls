@@ -1,7 +1,3 @@
-from django.conf import settings
-
-
-PAGE_SIZE = settings.PAGE_SIZE
 
 # Minimum amount of hours that a question must remain active
 QUESTION_MIN_ACTIVE_HOURS = 24

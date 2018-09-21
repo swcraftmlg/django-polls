@@ -1,4 +1,4 @@
-Django==1.9.7
-Jinja2==2.8
-django-filter==0.13.0
-djangorestframework==3.4.0
+Django==2.1.1
+Jinja2==2.10
+django-filter==2.0.0
+djangorestframework==3.8.2

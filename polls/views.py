@@ -1,9 +1,10 @@
 from datetime import datetime, timedelta
 
-from django.core.urlresolvers import reverse
+from django.conf import settings
 from django.db.models.functions import Coalesce
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
 from django.utils import timezone
 from django.views import generic
 
@@ -15,7 +16,7 @@ from . import models
 class ListView(generic.ListView):
     template_name = 'polls/list.jinja2'
     context_object_name = 'latest_question_list'
-    paginate_by = constants.PAGE_SIZE
+    paginate_by = settings.PAGE_SIZE
 
     def get_queryset(self):
         """
